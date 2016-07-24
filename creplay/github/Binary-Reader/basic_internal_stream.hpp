@@ -1,6 +1,6 @@
 #pragma once
-#include "types.hpp"
 #include <vector>
+#include "../lzma-decoder/lzma_helper.hpp"
 
 class basic_internal_stream {
 public:

@@ -57,9 +57,6 @@
     <ClInclude Include="github\Binary-Reader\file_stream.hpp">
       <Filter>Osu stuff\Replay\Reading</Filter>
     </ClInclude>
-    <ClInclude Include="github\Binary-Reader\types.hpp">
-      <Filter>Osu stuff\Replay\Reading</Filter>
-    </ClInclude>
     <ClInclude Include="StringManipulation.hpp">
       <Filter>Helpers\Text</Filter>
     </ClInclude>

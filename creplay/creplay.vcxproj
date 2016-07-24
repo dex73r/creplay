@@ -149,7 +149,6 @@
     <ClInclude Include="github\Binary-Reader\basic_internal_stream.hpp" />
     <ClInclude Include="github\Binary-Reader\BinaryReader.hpp" />
     <ClInclude Include="github\Binary-Reader\file_stream.hpp" />
-    <ClInclude Include="github\Binary-Reader\types.hpp" />
     <ClInclude Include="github\lzma-decoder\lzma_helper.hpp" />
     <ClInclude Include="Logs.h" />
     <ClInclude Include="Replay.hpp" />

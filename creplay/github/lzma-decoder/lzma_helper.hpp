@@ -14,7 +14,7 @@
 #pragma warning(disable : 4996) // This function or variable may be unsafe
 #endif
 
-typedef unsigned char Byte;
+typedef char Byte;
 typedef unsigned short UInt16;
 
 #ifdef _LZMA_UINT32_IS_ULONG

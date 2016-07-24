@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "lzma_helper.hpp"
 
 bool CRangeDecoder::Init()
