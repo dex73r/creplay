@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Osu stuff">
+      <UniqueIdentifier>{5402b92f-563e-4a89-9be1-b42d2710c4e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Osu stuff\Replay">
+      <UniqueIdentifier>{1dd45180-ab9c-45f2-a12d-8a5bd6152fcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Osu stuff\Replay\Decoding">
+      <UniqueIdentifier>{8c80c434-adcd-4586-8f72-db6e8ab00811}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Osu stuff\Replay\Reading">
+      <UniqueIdentifier>{a9bf8d6f-f469-416c-97b1-94b9a3e260b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{dcd70e59-2e25-45f5-88ea-74bdde0f23cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\Text">
+      <UniqueIdentifier>{f4a38978-9139-4a52-a0df-2bc4f03c9b95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\Logs">
+      <UniqueIdentifier>{564dec2b-2ff6-4b97-9c3e-bdd11c0c2c7f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.hpp">
+      <Filter>Osu stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="github\lzma-decoder\lzma_helper.hpp">
+      <Filter>Osu stuff\Replay\Decoding</Filter>
+    </ClInclude>
+    <ClInclude Include="github\Binary-Reader\basic_internal_stream.hpp">
+      <Filter>Osu stuff\Replay\Reading</Filter>
+    </ClInclude>
+    <ClInclude Include="github\Binary-Reader\BinaryReader.hpp">
+      <Filter>Osu stuff\Replay\Reading</Filter>
+    </ClInclude>
+    <ClInclude Include="github\Binary-Reader\file_stream.hpp">
+      <Filter>Osu stuff\Replay\Reading</Filter>
+    </ClInclude>
+    <ClInclude Include="github\Binary-Reader\types.hpp">
+      <Filter>Osu stuff\Replay\Reading</Filter>
+    </ClInclude>
+    <ClInclude Include="StringManipulation.hpp">
+      <Filter>Helpers\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Replay.hpp">
+      <Filter>Osu stuff\Replay</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes.hpp">
+      <Filter>Osu stuff\Replay</Filter>
+    </ClInclude>
+    <ClInclude Include="Logs.h">
+      <Filter>Helpers\Logs</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="creplay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Replay.cpp">
+      <Filter>Osu stuff\Replay</Filter>
+    </ClCompile>
+    <ClCompile Include="github\lzma-decoder\lzma_helper.cpp">
+      <Filter>Osu stuff\Replay\Decoding</Filter>
+    </ClCompile>
+    <ClCompile Include="github\Binary-Reader\file_stream.cpp">
+      <Filter>Osu stuff\Replay\Reading</Filter>
+    </ClCompile>
+    <ClCompile Include="Logs.cpp">
+      <Filter>Helpers\Logs</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
