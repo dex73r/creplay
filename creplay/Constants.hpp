@@ -52,7 +52,7 @@ enum ConsoleLog_t {
 	CONSOLE_ERROR			=	( 1 << 0 ),
 	CONSOLE_UNDEFINED		=	( 1 << 1 ),
 	CONSOLE_WARNING			=	( 1 << 2 ),
-	CONSOLE_MESSAGE			=	( 1 << 3 )
+	CONSOLE_MESSAGE			=	( 1 << 3 )// default
 };
 
 enum ErrorCodes_t {
@@ -62,6 +62,16 @@ enum ErrorCodes_t {
 	ERRORCODE_MESSAGE		=	( 1 << 3 )
 };
 
+enum NoteType_t {
+	NOTE_NORMAL = 1,
+	NOTE_CIRCLE = 2,
+	NOTE_SLIDER = 4,
+	NOTE_SPINNER = 8,
+	NOTE_COLOURHAX = 112,
+	NOTE_HOLD = 128
+};
+
+
 /// BITWISE TEMPLATES PART
 
 template< class T >
@@ -69,8 +79,7 @@ inline T operator~( T a ) {
 	return reinterpret_cast< T >( ~int( a ) );
 }
 
-inline OsuKeys_t operator|( OsuKeys_t a, OsuKeys_t b )
-{
+inline OsuKeys_t operator|( OsuKeys_t a, OsuKeys_t b ){
 	return static_cast< OsuKeys_t >( static_cast< int >( a ) | static_cast< int >( b ) );
 }
 

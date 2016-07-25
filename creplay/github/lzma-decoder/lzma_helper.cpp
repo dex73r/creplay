@@ -246,17 +246,16 @@ void CLzmaDecoder::InitDist()
 	INIT_PROBS(PosDecoders);
 }
 
-unsigned CLzmaDecoder::DecodeDistance(unsigned len)
-{
-	unsigned lenState = len;
-	if(lenState > kNumLenToPosStates - 1)
-		lenState = kNumLenToPosStates - 1;
+unsigned CLzmaDecoder::DecodeDistance(unsigned len) {
+	
+	if(len > kNumLenToPosStates - 1)
+		len = kNumLenToPosStates - 1;
 
-	unsigned posSlot = PosSlotDecoder[lenState].Decode(&RangeDec);
+	unsigned posSlot = PosSlotDecoder[len].Decode(&RangeDec);
 	if(posSlot < 4)
 		return posSlot;
 
-	unsigned numDirectBits = (unsigned)((posSlot >> 1) - 1);
+	unsigned numDirectBits = unsigned( ( posSlot >> 1 ) - 1 );
 	UInt32 dist = ((2 | (posSlot & 1)) << numDirectBits);
 	if(posSlot < kEndPosModelIndex)
 		dist += BitTreeReverseDecode(PosDecoders + dist - posSlot, numDirectBits, &RangeDec);

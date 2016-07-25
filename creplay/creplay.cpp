@@ -4,12 +4,18 @@
 #include "stdafx.h"
 
 int main ( ) {
-	
-	std::string file = "replay.osr";
+	//TODO: proper replay finding
+	std::string file = "C:\\replay.osr";
 
 	CReplay x( file, true );
 	x.DumpInfo( );
 
+	CBeatmap b;
+	b.ReadFile( "C:\\beatmap.osu" );
+#ifdef _DEBUG
+	b.Debug_printhitobj( );
+#endif
+	CReplayAnalyze cr( b, x );
+
     return 0;
 }
-

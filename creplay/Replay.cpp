@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "Replay.hpp"
 
-Logs::CConsole g_Console( "Replay Analyser" );
+namespace Logs {
+	CConsole g_Console( "Replay analyzer" );
+}
 
 CReplay::CReplay( std::string strPath, bool bFull_load = true ) {
 	m_ReplayFile = strPath;
@@ -73,39 +75,24 @@ void CReplay::Load( ) {
 	// Compressed replay data
 	if ( ReplayLength > 0 ) {
 		int lastTime = 0;
-// 		std::vector< char > vec_CodedStream = lzma_decompress( replayReader.read_bytes( ReplayLength ) );
-//		std::string replayDataString { vec_CodedStream.begin( ), vec_CodedStream.end( ) };
-
-//		std::cout << replayDataString << '\n';
-
-
-		std::vector<char> replay_data; 
+		std::vector<unsigned char> replay_data;
 		for ( int i = 0; i < ReplayLength; ++i ) {
 			replay_data.push_back( replayReader.read_byte( ) );
 		}
 
-		auto uncompressed = lzma_decompress( { replay_data.begin( ), replay_data.end( ) } );
-		g_Console.Write( "result", std::string( replay_data.begin( ), replay_data.end( ) ), CONSOLE_WARNING );
-		//TODO: bug
-		std::string result { uncompressed.begin( ), uncompressed.end( ) };
-		g_Console.Write( "result", result, CONSOLE_WARNING );
-
-
+		// Changed it to just the entire vector as the parameter
+		auto uncompressed = lzma_decompress( replay_data );
+		std::string result { uncompressed.begin( ), uncompressed.end( ) };		
 		std::vector< std::string > replayDataFrames = split( result, ',', false );
 		int lastFrameTime = 0;
-		std::cout << replayDataFrames.size( ) << '\n';
-		for ( const std::string &frame : replayDataFrames ) {
+		for ( const std::string& frame : replayDataFrames ) {
 			std::vector< std::string > frameElements = split( frame, '|', false );
 
-			// docummented is only size of 4
-			if ( frameElements.size( ) < 4 )
+			// documented is only size of 4 https://osu.ppy.sh/wiki/Osr_(file_format)
+			if ( frameElements.size( ) < 4 ) 
 				continue;
 			else if ( frameElements.size( ) != 4 )
-				g_Console.Error( "frameElements.size() was higher than 4, unexpected error!\n" );
-
-			//ReplayFrames.push_back( ReplayFrame_t { std::stoi( frameElements.at( 0 ) ), std::stoi( frameElements.at( 0 ) ) + lastFrameTime, ( std::stoi( frameElements.at( 0 ) ) + lastFrameTime ) / 1000.0f, std::stof( frameElements.at( 1 ) ), std::stof( frameElements.at( 2 ) ), static_cast< Keys_t >( std::stoi( frameElements.at( 3 ) ) ) } );
-			//b_ReplayFrames.emplace_back( ReplayFrame { std::stoi( frameElements.at( 0 ) ), std::stoi( frameElements.at( 0 ) ) + lastFrameTime, ( std::stoi( frameElements.at( 0 ) ) + lastFrameTime ) / 1000.0f, std::stof( frameElements.at( 1 ) ), std::stof( frameElements.at( 2 ) ), static_cast< Keys >( std::stoi( frameElements.at( 3 ) ) ) } );
-			//lastFrameTime = b_ReplayFrames.at( b_ReplayFrames.size( ) - 1 ).Time;
+				Logs::g_Console.Error( "frameElements.size() was higher than 4, unexpected error!\n" );
 
 			ReplayFrame_t ThisFrame;
 			{
@@ -115,7 +102,6 @@ void CReplay::Load( ) {
 				ThisFrame.Y = std::stof( frameElements.at( 2 ) );
 				ThisFrame.Keys = OsuKeys_t( std::stoi( frameElements.at( 3 ) ) );
 			}
-			g_Console.Error( std::to_string( ThisFrame.Time ) );
 			ReplayFrames.push_back( ThisFrame );
 			lastFrameTime = ReplayFrames.at( ReplayFrames.size( ) - 1 ).Time;
 		}

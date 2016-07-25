@@ -13,8 +13,8 @@ Byte file_stream::ReadByte()
 	if(!valid)
 		throw std::runtime_error{ "Error!" };
 
-	Byte b;
-	if (!m_file.read(&b, 1))
+	char b;
+	if ( !m_file.read( &b, 1 ) )
 		valid = false;
 
 	return b;

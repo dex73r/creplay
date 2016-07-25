@@ -9,35 +9,6 @@ namespace Logs {
 		m_osBasic_stream << "=== " << m_strBaseTitle << " started successfully ===\n";
 	}
 
-	void Logs::CConsole::Write( std::string text ) {
-		Write( text, m_strBaseTitle, m_BaseFlag );
-	}
-
-	void Logs::CConsole::Write( std::string caption, std::string text ) {
-		Write( text, caption, m_BaseFlag );
-	}
-
-	void Logs::CConsole::Write( std::string caption, ConsoleLog_t logstatus ) {
-		Write( m_strBaseTitle, caption, logstatus );
-	}
-
-	void Logs::CConsole::Write( std::string caption, std::string text, ConsoleLog_t logstatus = CONSOLE_MESSAGE ) {
-		switch ( logstatus ) {
-				//TODO: add time line
-			case CONSOLE_WARNING:
-				m_osBasic_stream << "[WARNING] " << text << '\n';
-				break;
-			case CONSOLE_ERROR:
-				m_osBasic_stream << "[ERROR] " << text << '\n';
-				break;
-			case CONSOLE_MESSAGE:
-				m_osBasic_stream << text << '\n';
-				break;
-			default:
-				throw std::runtime_error { Errors::Error( ERRORCODE_UNEXPECTED ) };
-		}
-	}
-
 	void Logs::CConsole::Error( std::string error_message ) {
 		Write( m_strErrorBaseTitle, error_message, CONSOLE_ERROR );
 	}

@@ -34,6 +34,12 @@
     <Filter Include="Helpers\Logs">
       <UniqueIdentifier>{564dec2b-2ff6-4b97-9c3e-bdd11c0c2c7f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Osu stuff\Beatmap">
+      <UniqueIdentifier>{c2ceb43b-ee09-42fc-b876-0f11a348ff38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\Math">
+      <UniqueIdentifier>{eefb59b6-4048-4d6b-a895-612d0d689480}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -69,6 +75,15 @@
     <ClInclude Include="Logs.h">
       <Filter>Helpers\Logs</Filter>
     </ClInclude>
+    <ClInclude Include="ReplayAnalyzer.hpp">
+      <Filter>Osu stuff\Replay</Filter>
+    </ClInclude>
+    <ClInclude Include="Beatmap.hpp">
+      <Filter>Osu stuff\Beatmap</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.hpp">
+      <Filter>Helpers\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -88,6 +103,15 @@
     </ClCompile>
     <ClCompile Include="Logs.cpp">
       <Filter>Helpers\Logs</Filter>
+    </ClCompile>
+    <ClCompile Include="ReplayAnalyzer.cpp">
+      <Filter>Osu stuff\Replay</Filter>
+    </ClCompile>
+    <ClCompile Include="Beatmap.cpp">
+      <Filter>Osu stuff\Beatmap</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector.cpp">
+      <Filter>Helpers\Math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

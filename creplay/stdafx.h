@@ -24,17 +24,20 @@
 // ==============================
 // Osu related stuff
 #include "Replay.hpp"
+#include "ReplayAnalyzer.hpp"
 #include "Classes.hpp"
+#include "Beatmap.hpp"
 // ==============================
 
 // ==============================
 // Other frameworks
-// #include <boost/algorithm/string.hpp>
+
 // ==============================
 
 // ==============================
 // Misc
 #include "Constants.hpp"
+#include "Vector.hpp"
 // ==============================
 
 // ==============================

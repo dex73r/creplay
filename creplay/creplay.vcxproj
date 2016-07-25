@@ -144,24 +144,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Beatmap.hpp" />
     <ClInclude Include="Classes.hpp" />
     <ClInclude Include="Constants.hpp" />
+    <ClInclude Include="Vector.hpp" />
     <ClInclude Include="github\Binary-Reader\basic_internal_stream.hpp" />
     <ClInclude Include="github\Binary-Reader\BinaryReader.hpp" />
     <ClInclude Include="github\Binary-Reader\file_stream.hpp" />
     <ClInclude Include="github\lzma-decoder\lzma_helper.hpp" />
     <ClInclude Include="Logs.h" />
     <ClInclude Include="Replay.hpp" />
+    <ClInclude Include="ReplayAnalyzer.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StringManipulation.hpp" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Beatmap.cpp" />
     <ClCompile Include="creplay.cpp" />
+    <ClCompile Include="Vector.cpp" />
     <ClCompile Include="github\Binary-Reader\file_stream.cpp" />
     <ClCompile Include="github\lzma-decoder\lzma_helper.cpp" />
     <ClCompile Include="Logs.cpp" />
     <ClCompile Include="Replay.cpp" />
+    <ClCompile Include="ReplayAnalyzer.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

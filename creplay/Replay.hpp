@@ -70,7 +70,6 @@ private:
 	// every single frame of replay is stored here
 	std::vector < ReplayFrame_t > ReplayFrames;
 
-
 	int Seed;
 };
 
