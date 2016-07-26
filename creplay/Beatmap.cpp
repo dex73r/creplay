@@ -7,21 +7,19 @@ void CBeatmap::ReadFile( std::string beatmapfile ) {
 	m_fBeatLength = 1.f;
 
 	std::string strLine;
-	int iStartTime;
-	int iCircleType;
 	int fCoordX;
 	int fCoordY;
-	float beatLength;
-	float single;
+	int iStartTime;
+	int iCircleType;
 	int iEndTime;
-
+	float fBeatLength;
+	float fSingle;
 
 	bool bHitObjects = false;
 	bool bTimingPoints = false;
-	bool m_bDifficulty = false;
-	bool m_bGeneral = false;
-	bool m_bFileFormat = false;
-
+	bool bDifficulty = false;
+	bool bGeneral = false;
+	bool bFileFormat = false;
 
 	// read all lines of program
 	std::basic_ifstream< char > ioFile( m_strBeatmapFile );
@@ -36,17 +34,17 @@ void CBeatmap::ReadFile( std::string beatmapfile ) {
 	for ( unsigned int i = 0; i < m_vec_strLines.size( ); i++ ) {
 
 		std::string strFileLine = m_vec_strLines [ i ];
-		if ( !m_bFileFormat ) {
+		if ( !bFileFormat ) {
 			if ( strFileLine.find( "file format" ) != std::string::npos ) {
 				m_iFileFormat = stoi( split( strFileLine, 'v', false ) [ 1 ] );
 			}
 		}
 		else if ( strFileLine == "[General]" ) {
-			m_bGeneral = true;
+			bGeneral = true;
 		}
-		else if ( m_bGeneral ) {
+		else if ( bGeneral ) {
 			if ( !( strFileLine != "" ) ) {
-				m_bGeneral = false;
+				bGeneral = false;
 			}
 			else if ( ( strFileLine.find( "Mode" ) != std::string::npos ) ) {
 				//todo: error handling
@@ -56,11 +54,11 @@ void CBeatmap::ReadFile( std::string beatmapfile ) {
 
 		}
 		if ( strFileLine == "[Difficulty]" ) {
-			m_bDifficulty = true;
+			bDifficulty = true;
 		}
-		else if ( m_bDifficulty ) {
+		else if ( bDifficulty ) {
 			if ( !( strFileLine != "" ) ) {
-				m_bDifficulty = false;
+				bDifficulty = false;
 			}
 			else if ( strFileLine.find( "HPDrainRate:" ) != std::string::npos ) {
 				strLine = strFileLine.substr( strFileLine.length( ) - 1 );
@@ -156,14 +154,14 @@ void CBeatmap::ReadFile( std::string beatmapfile ) {
 								  ? m_vecTimingObjects [ iCount ].BeatLength
 								  : m_vecTimingObjects [ iCount - 1 ].BeatLength );
 				if ( m_fBeatLength >= 0.f ) {
-					beatLength = m_fBeatLength * ( single2 / m_fSliderMultiplier ) / 100.f;
-					single = beatLength * single3;
+					fBeatLength = m_fBeatLength * ( single2 / m_fSliderMultiplier ) / 100.f;
+					fSingle = fBeatLength * single3;
 					HitObject_t hitObject2;
 					vector2f_t p;
 					p.x = float( fCoordX );
 					p.y = float( fCoordY );
 					hitObject2.StartTime = iStartTime,
-						hitObject2.EndTime = int( single ) + iStartTime,
+						hitObject2.EndTime = int( fSingle ) + iStartTime,
 						hitObject2.StartPoint = p,
 						hitObject2.Type = NOTE_SLIDER,
 						hitObject2.IsSlider = true;
@@ -174,14 +172,14 @@ void CBeatmap::ReadFile( std::string beatmapfile ) {
 				else {
 					float beatLength1 = float( int( m_fBeatLength ) ) / -100.f;
 					m_fBeatLength = m_fBeatLengthBase * beatLength1;
-					beatLength = m_fBeatLength * ( single2 / m_fSliderMultiplier ) / 100.f;
-					single = beatLength * single3;
+					fBeatLength = m_fBeatLength * ( single2 / m_fSliderMultiplier ) / 100.f;
+					fSingle = fBeatLength * single3;
 					HitObject_t hitObject3;
 					vector2f_t p;
 					p.x = float( fCoordX );
 					p.y = float( fCoordY );
 					hitObject3.StartTime = iStartTime,
-						hitObject3.EndTime = int( single ) + iStartTime,
+						hitObject3.EndTime = int( fSingle ) + iStartTime,
 						hitObject3.StartPoint = p,
 						hitObject3.Type = NOTE_SLIDER,
 						hitObject3.IsSlider = true;

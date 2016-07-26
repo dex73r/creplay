@@ -1,0 +1,2 @@
+=== Replay Analyser started successfully ===
+=== LOG END ===
