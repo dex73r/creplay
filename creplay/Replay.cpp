@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "Replay.hpp"
-
-namespace Logs {
-	CConsole g_Console( "Replay analyzer" );
-}
+#include "Logs.h"
 
 CReplay::CReplay( std::string strPath, bool bFull_load = true ) {
 	m_ReplayFile = strPath;
@@ -72,14 +69,13 @@ void CReplay::Load( ) {
 
 	// length is correct
 	ReplayLength = replayReader.read_int32( );
+	
 	// Compressed replay data
 	if ( ReplayLength > 0 ) {
-		int lastTime = 0;
 		std::vector<unsigned char> replay_data;
 		for ( int i = 0; i < ReplayLength; ++i ) {
 			replay_data.push_back( replayReader.read_byte( ) );
 		}
-
 		// Changed it to just the entire vector as the parameter
 		auto uncompressed = lzma_decompress( replay_data );
 		std::string result { uncompressed.begin( ), uncompressed.end( ) };		
@@ -92,7 +88,7 @@ void CReplay::Load( ) {
 			if ( frameElements.size( ) < 4 ) 
 				continue;
 			else if ( frameElements.size( ) != 4 )
-				Logs::g_Console.Error( "frameElements.size() was higher than 4, unexpected error!\n" );
+				Globals::Logs::g_Console.Error( "frameElements.size() was higher than 4, unexpected error!\n" );
 
 			ReplayFrame_t ThisFrame;
 			{
@@ -105,8 +101,8 @@ void CReplay::Load( ) {
 			ReplayFrames.push_back( ThisFrame );
 			lastFrameTime = ReplayFrames.at( ReplayFrames.size( ) - 1 ).Time;
 		}
-
 	}
+
 	fullload_done = true;
 }
 
@@ -117,11 +113,14 @@ void CReplay::DumpInfo( ) {
 		printf( "and you fc'd it\n" );
 	else
 		printf( ", well, you should try more to fc it, %s.\n", m_PlayerName.c_str( ) );
+	std::cout << "This replay has " << ReplayFrames.size( ) << " frames\n";
 
 }
 
 CReplay::CReplay( CReplay &&other )
-	: replayReader( std::move( other.replayReader ) ),
+	: LifeFrames( std::move( other.LifeFrames ) ),
+	ReplayFrames( std::move( other.ReplayFrames ) ),
+	replayReader( std::move( other.replayReader ) ),
 	m_MapHash( std::move( other.m_MapHash ) ),
 	m_PlayerName( std::move( other.m_PlayerName ) ),
 	m_ReplayHash( std::move( other.m_ReplayHash ) ),
@@ -142,9 +141,7 @@ CReplay::CReplay( CReplay &&other )
 	m_GameMode( other.m_GameMode ),
 	headerLoaded( other.headerLoaded ),
 	fullload_done( other.fullload_done ),
-	LifeFrames( std::move( other.LifeFrames ) ),
 	ReplayLength( other.ReplayLength ),
-	ReplayFrames( std::move( other.ReplayFrames ) ),
 	Seed( other.Seed )
 {}
 

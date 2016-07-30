@@ -30,6 +30,11 @@ public:
 
 
 	CReplay &CReplay::operator=( CReplay&& other );
+
+	// contains Time and Percentage inside
+	std::vector < LifeFrame_t > LifeFrames;
+	// every single frame of replay is stored here
+	std::vector < ReplayFrame_t > ReplayFrames;
 protected:
 	// a stream of binary information of .osr file
 	BinaryReader< file_stream > replayReader;
@@ -64,17 +69,10 @@ private:
 	bool headerLoaded;
 	bool fullload_done;
 
-	// contains Time and Percentage inside
-	std::vector < LifeFrame_t > LifeFrames;
-
 	//DateTime PlayTime;
 
 	// a length of replay data
 	int ReplayLength;
-
-	// every single frame of replay is stored here
-	std::vector < ReplayFrame_t > ReplayFrames;
-
 	int Seed;
 };
 
