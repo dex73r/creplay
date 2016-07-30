@@ -14,7 +14,10 @@ using UInt = unsigned int;
 
 class CReplay {
 public:
-	CReplay( ) = delete;
+
+
+	CReplay( ) {};
+	CReplay( CReplay &&other );
 	// *arg1: std::string reference to path of the replay
 	// *arg2: bool to know whether to full load or not
 	CReplay( std::string, bool );
@@ -24,7 +27,9 @@ public:
 	// Debug
 	void DumpInfo( );
 	// ==============================
-	
+
+
+	CReplay &CReplay::operator=( CReplay&& other );
 protected:
 	// a stream of binary information of .osr file
 	BinaryReader< file_stream > replayReader;

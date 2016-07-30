@@ -4,18 +4,20 @@
 #include "stdafx.h"
 
 int main ( ) {
+
+
 	//TODO: proper replay finding
-	std::string file = "C:\\replay.osr";
+	std::string path_replay = "C:\\replay.osr";
+	std::string path_beat	= "C:\\beatmap.osu";
 
-	CReplay x( file, true );
-	x.DumpInfo( );
-
-	CBeatmap b;
-	b.ReadFile( "C:\\beatmap.osu" );
 #ifdef _DEBUG
-	b.Debug_printhitobj( );
+	//b.Debug_printhitobj( );
 #endif
-	CReplayAnalyze cr( b, x );
+
+	CReplay r( path_replay, true );
+	CBeatmap b;
+	b.ReadFile( path_beat );
+	CReplayAnalyze cr( b, r );
 
     return 0;
 }

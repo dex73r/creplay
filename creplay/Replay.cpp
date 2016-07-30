@@ -120,3 +120,62 @@ void CReplay::DumpInfo( ) {
 
 }
 
+CReplay::CReplay( CReplay &&other )
+	: replayReader( std::move( other.replayReader ) ),
+	m_MapHash( std::move( other.m_MapHash ) ),
+	m_PlayerName( std::move( other.m_PlayerName ) ),
+	m_ReplayHash( std::move( other.m_ReplayHash ) ),
+	m_GameMode_String( std::move( other.m_GameMode_String ) ),
+	m_ReplayFile( std::move( other.m_ReplayFile ) ),
+	m_Count300( other.m_Count300 ),
+	m_Count100( other.m_Count100 ),
+	m_Count50( other.m_Count50 ),
+	m_CountGeki( other.m_CountGeki ),
+	m_CountKatu( other.m_CountKatu ),
+	m_CountMiss( other.m_CountMiss ),
+	m_MaxCombo( other.m_MaxCombo ),
+	m_TotalScore( other.m_TotalScore ),
+	m_FileFormat( other.m_FileFormat ),
+	m_bIsPerfect( other.m_bIsPerfect ),
+	m_bAxisFlip( other.m_bAxisFlip ),
+	m_Mods( other.m_Mods ),
+	m_GameMode( other.m_GameMode ),
+	headerLoaded( other.headerLoaded ),
+	fullload_done( other.fullload_done ),
+	LifeFrames( std::move( other.LifeFrames ) ),
+	ReplayLength( other.ReplayLength ),
+	ReplayFrames( std::move( other.ReplayFrames ) ),
+	Seed( other.Seed )
+{}
+
+
+CReplay &CReplay::operator=( CReplay &&other ) {
+	if ( this == &other )
+		return *this;
+	replayReader = std::move( other.replayReader );
+	m_MapHash = std::move( other.m_MapHash );
+	m_PlayerName = std::move( other.m_PlayerName );
+	m_ReplayHash = std::move( other.m_ReplayHash );
+	m_GameMode_String = std::move( other.m_GameMode_String );
+	m_ReplayFile = std::move( other.m_ReplayFile );
+	m_Count300 = other.m_Count300;
+	m_Count100 = other.m_Count100;
+	m_Count50 = other.m_Count50;
+	m_CountGeki = other.m_CountGeki;
+	m_CountKatu = other.m_CountKatu;
+	m_CountMiss = other.m_CountMiss;
+	m_MaxCombo = other.m_MaxCombo;
+	m_TotalScore = other.m_TotalScore;
+	m_FileFormat = other.m_FileFormat;
+	m_bIsPerfect = other.m_bIsPerfect;
+	m_bAxisFlip = other.m_bAxisFlip;
+	m_Mods = other.m_Mods;
+	m_GameMode = other.m_GameMode;
+	headerLoaded = other.headerLoaded;
+	fullload_done = other.fullload_done;
+	LifeFrames = std::move( other.LifeFrames );
+	ReplayLength = other.ReplayLength;
+	ReplayFrames = std::move( other.ReplayFrames );
+	Seed = other.Seed;
+	return *this;
+}

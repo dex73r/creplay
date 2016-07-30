@@ -1,4 +1,5 @@
 #pragma once
+
 enum OsuKeys_t {
 	KEYS_NONE				=	0,
 	KEYS_M1					=	( 1 << 0 ),
